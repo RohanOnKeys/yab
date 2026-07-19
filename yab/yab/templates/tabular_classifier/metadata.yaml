@@ -1,0 +1,83 @@
+name: tabular_classifier
+description: Feed-forward neural network template for supervised tabular classification.
+version: 1.0.0
+template_version: 1
+author: YAB Team
+
+task:
+  domain: tabular
+  type: classification
+  framework: pytorch
+
+parameters:
+
+  model:
+    input_features:
+      type: int
+      required: true
+
+    num_classes:
+      type: int
+      required: true
+
+    hidden_dims:
+      type: list
+      default: [128, 64]
+
+    dropout:
+      type: float
+      default: 0.3
+
+  training:
+    batch_size:
+      type: int
+      default: 64
+
+    epochs:
+      type: int
+      default: 100
+
+    device:
+      type: str
+      default: auto
+
+    seed:
+      type: int
+      default: 42
+
+  optimizer:
+    optimizer:
+      type: str
+      default: adam
+
+    lr:
+      type: float
+      default: 0.001
+
+    weight_decay:
+      type: float
+      default: 0.0
+
+    scheduler:
+      type: str
+      default: null
+
+  loss:
+    loss_fn:
+      type: str
+      default: cross_entropy
+
+  evaluation:
+    metrics:
+      type: list
+      default:
+        - accuracy
+
+  checkpoint:
+    checkpoint_dir:
+      type: str
+      default: checkpoints
+
+    save_best:
+      type: bool
+      default: true
