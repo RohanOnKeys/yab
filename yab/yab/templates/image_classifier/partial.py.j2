@@ -1,0 +1,47 @@
+# {{ project_name }} — image classifier (partial)
+import torch
+import torch.nn as nn
+
+
+class {{ model_name }}(nn.Module):
+    def __init__(self, in_channels: int = {{ in_channels }}, num_classes: int = {{ num_classes }}):
+        super().__init__()
+        self.features = nn.Sequential(
+            nn.Conv2d(in_channels, 32, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.ReLU(),
+            nn.MaxPool2d(2),
+        )
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(64 * ({{ image_size }} // 4) * ({{ image_size }} // 4), 256),
+            nn.ReLU(),
+            nn.Linear(256, num_classes),
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        return self.classifier(self.features(x))
+
+
+def train_step(model, batch, optimizer, criterion, device):
+    model.train()
+    images, labels = batch
+    images, labels = images.to(device), labels.to(device)
+    optimizer.zero_grad()
+    loss = criterion(model(images), labels)
+    loss.backward()
+    optimizer.step()
+    return loss.item()
+
+
+def eval_step(model, batch, criterion, device):
+    model.eval()
+    with torch.no_grad():
+        images, labels = batch
+        images, labels = images.to(device), labels.to(device)
+        outputs = model(images)
+        loss = criterion(outputs, labels)
+        correct = (outputs.argmax(1) == labels).sum().item()
+    return loss.item(), correct

@@ -1,0 +1,91 @@
+name: image_classifier
+
+version: 1.0.0
+
+supports:
+  - full
+  - partial
+  - raw
+
+task:
+  domain: computer_vision
+  type: image_classification
+
+parameters:
+
+  num_classes:
+    type: int
+    required: true
+
+  input_channels:
+    type: int
+    default: 3
+
+  batch_size:
+    type: int
+    default: 32
+
+  shuffle:
+    type: bool
+    default: true
+
+  num_workers:
+    type: int
+    default: 4
+
+  pin_memory:
+    type: bool
+    default: true
+
+  epochs:
+    type: int
+    default: 20
+
+  lr:
+    type: float
+    default: 0.001
+
+  optimizer:
+    type: str
+    default: adam
+
+  scheduler:
+    type: str
+    default: null
+
+  weight_decay:
+    type: float
+    default: 0.0
+
+  loss_fn:
+    type: str
+    default: cross_entropy
+
+  label_smoothing:
+    type: float
+    default: 0.0
+
+  metrics:
+    type: list
+    default:
+      - accuracy
+
+  mixed_precision:
+    type: bool
+    default: false
+
+  checkpoint_dir:
+    type: str
+    default: checkpoints
+
+  save_best:
+    type: bool
+    default: true
+
+  device:
+    type: str
+    default: auto
+
+  seed:
+    type: int
+    default: 42

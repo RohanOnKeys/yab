@@ -1,0 +1,79 @@
+name: text_classifier
+
+version: 1.0.0
+
+supports:
+  - full
+  - partial
+  - raw
+
+task:
+  domain: nlp
+  type: text_classification
+
+parameters:
+
+  num_classes:
+    type: int
+    required: true
+
+  model_name:
+    type: str
+    default: bert-base-uncased
+
+  tokenizer:
+    type: str
+    default: auto
+
+  max_length:
+    type: int
+    default: 128
+
+  batch_size:
+    type: int
+    default: 16
+
+  epochs:
+    type: int
+    default: 3
+
+  lr:
+    type: float
+    default: 2e-5
+
+  optimizer:
+    type: str
+    default: adamw
+
+  scheduler:
+    type: str
+    default: linear
+
+  weight_decay:
+    type: float
+    default: 0.01
+
+  metrics:
+    type: list
+    default:
+      - accuracy
+
+  mixed_precision:
+    type: bool
+    default: false
+
+  checkpoint_dir:
+    type: str
+    default: checkpoints
+
+  save_best:
+    type: bool
+    default: true
+
+  device:
+    type: str
+    default: auto
+
+  seed:
+    type: int
+    default: 42
