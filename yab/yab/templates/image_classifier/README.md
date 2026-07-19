@@ -1,31 +1,88 @@
-# image_classifier
+# Image Classifier
 
-PyTorch CNN-based image classification template.
+## Overview
 
-## Abstraction Levels
+The Image Classifier template generates PyTorch boilerplate for image classification tasks.
 
-- **full** — complete end-to-end training script with data loading, model definition, training loop, evaluation, and checkpointing.
-- **partial** — model class and training step as importable components; no inline data pipeline.
-- **raw** — minimal skeleton: imports, class stub, and optional `__main__` block.
+It is designed for datasets such as CIFAR-10, CIFAR-100, MNIST, FashionMNIST, ImageNet, and custom image datasets.
 
-## Usage
+---
 
-```bash
-yab generate image_classifier full --project-name cat_vs_dog --model-name ResNetClassifier
-yab generate image_classifier partial --model-name ResNetClassifier
-yab generate image_classifier raw --model-name ResNetClassifier
+## Use Cases
+
+- Image Classification
+- CNN Training
+- Transfer Learning
+- Custom Vision Datasets
+
+---
+
+## Supported Abstractions
+
+- Full
+- Partial
+- Raw
+
+---
+
+## Supported Models
+
+- Custom CNN
+- ResNet
+- EfficientNet
+- ConvNeXt
+- Any PyTorch classification model
+
+---
+
+## User API
+
+```python
+trainer = yab.use(
+    "image_classifier",
+    type="full",
+    num_classes=10
+)
 ```
 
-## Context Variables
+---
 
-| Variable | Type | Default | Description |
-|---|---|---|---|
-| `project_name` | str | `my_project` | Output script name |
-| `model_name` | str | `MyModel` | Model class name |
-| `num_classes` | int | `2` | Number of output classes |
-| `learning_rate` | float | `0.001` | Optimizer learning rate |
-| `batch_size` | int | `32` | Dataloader batch size |
-| `num_epochs` | int | `10` | Training epochs |
-| `device` | str | `cuda` | Compute device |
-| `image_size` | int | `224` | Input image resolution |
-| `in_channels` | int | `3` | Number of input channels |
+## Generated Components
+
+- Model
+- Trainer
+- Training Loop
+- Validation Loop
+- Prediction
+- Checkpointing
+- Logging
+- Main Function
+
+---
+
+## Directory
+
+```
+image_classifier/
+├── metadata.yaml
+├── README.md
+├── full.py.j2
+├── partial.py.j2
+└── raw.py.j2
+```
+
+---
+
+## Status
+
+🚧 Under Development
+
+## Roadmap
+
+- [x] Template scaffold
+- [ ] Metadata validation
+- [ ] Jinja rendering
+- [ ] `yab.use()` support
+- [ ] `yab.write()` support
+- [ ] Example projects
+- [ ] Unit tests

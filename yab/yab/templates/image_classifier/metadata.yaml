@@ -21,6 +21,20 @@ parameters:
     type: int
     default: 3
 
+  image_size:
+    type: list
+    default:
+      - 224
+      - 224
+
+  normalize:
+    type: bool
+    default: true
+
+  augmentation:
+    type: bool
+    default: false
+
   batch_size:
     type: int
     default: 32

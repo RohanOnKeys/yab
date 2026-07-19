@@ -8,7 +8,7 @@ supports:
   - raw
 
 task:
-  domain: nlp
+  domain: natural_language_processing
   type: text_classification
 
 parameters:
@@ -29,9 +29,29 @@ parameters:
     type: int
     default: 128
 
+  padding:
+    type: str
+    default: max_length
+
+  truncation:
+    type: bool
+    default: true
+
   batch_size:
     type: int
     default: 16
+
+  shuffle:
+    type: bool
+    default: true
+
+  num_workers:
+    type: int
+    default: 4
+
+  pin_memory:
+    type: bool
+    default: true
 
   epochs:
     type: int
@@ -39,7 +59,7 @@ parameters:
 
   lr:
     type: float
-    default: 2e-5
+    default: 0.00002
 
   optimizer:
     type: str
@@ -52,6 +72,10 @@ parameters:
   weight_decay:
     type: float
     default: 0.01
+
+  loss_fn:
+    type: str
+    default: cross_entropy
 
   metrics:
     type: list
