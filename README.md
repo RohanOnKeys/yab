@@ -1,6 +1,6 @@
 # YAB
 
-> Yet Another Boilerplate
+Yet Another Boilerplate
 
 YAB is a Python library that removes repetitive PyTorch boilerplate without taking away control.
 
