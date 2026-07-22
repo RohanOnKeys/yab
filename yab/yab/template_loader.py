@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from registry import TemplateRegistry, TemplateInfo
+    from .core.template_registry import TemplateRegistry, TemplateInfo
 
 
 class InvalidAbstractionError(Exception):
